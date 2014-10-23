@@ -7,6 +7,10 @@ var express    = require('express'); 		// call express
 var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://db_admin:Ajinkya1!@ds041157.mongolab.com:41157/neilapidb'); //connect to our DB
+var Expense = require('./models/expense')
+
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,12 +22,49 @@ var port = process.env.PORT || 1337; 		// set our port
 // =============================================================================
 var router = express.Router(); 				// get an instance of the express Router
 
+// MIDDLEWEAR FOR ROUTER
+router.use(function(req,res,next) {
+	console.log('Something is happening');
+	next(); //go to next routes and don't stop here
+});
+
 // test route to make sure everything is working (accessed at GET http://localhost:8080/api)
 router.get('/', function(req, res) {
 	res.json({ message: 'hooray! welcome to our api!' });	
 });
 
 // more routes for our API will happen here
+
+// on routes that end in /expenses
+// ----------------------------------------
+
+router.route('/expenses')
+
+.get(function(req,res) {
+	Expense.find(function(err,expenses) { //return all expenses as the result
+		if(err) { res.send(err); }
+
+		res.json(expenses);
+
+	})
+})
+
+
+.post(function(req,res) {
+	var expense = new Expense();
+	expense.name = req.body.name;
+	expense.amount = req.body.amount;
+
+	//save the expense and check for errors
+	expense.save(function(err) {
+		if(err) {
+			res.send(err);
+		}
+
+		res.json({message: 'Expense created!'});
+	});
+})
+
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
