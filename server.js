@@ -8,7 +8,8 @@ var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser');
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://db_admin:Ajinkya1!@ds041157.mongolab.com:41157/neilapidb'); //connect to our DB
+// mongoose.connect('mongodb://db_admin:Ajinkya1!@ds041157.mongolab.com:41157/neilapidb'); //connect to our DB
+mongoose.connect(process.env.CUSTOMCONNSTR_MONGOLAB_URI);
 var Expense = require('./models/expense')
 
 // configure app to use bodyParser()
