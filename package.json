@@ -1,0 +1,24 @@
+{
+  "name": "neilapi",
+  "version": "1.0.0",
+  "description": "neil's api",
+  "main": "server.js",
+  "scripts": {
+    "test": "hi"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/njoshi22/neilapi.git"
+  },
+  "author": "Neil joshi",
+  "license": "Copyright",
+  "bugs": {
+    "url": "https://github.com/njoshi22/neilapi/issues"
+  },
+  "homepage": "https://github.com/njoshi22/neilapi",
+  "dependencies": {
+    "express": "^4.9.8",
+    "mongoose": "~3.6.13",
+    "body-parser": "~1.0.1"
+  }
+}
