@@ -6,6 +6,7 @@
 var express    = require('express'); 		// call express
 var app        = express(); 				// define our app using express
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var mongoose = require('mongoose');
 // mongoose.connect('mongodb://db_admin:Ajinkya1!@ds041157.mongolab.com:41157/neilapidb'); //connect to our DB
@@ -16,6 +17,8 @@ var Expense = require('./models/expense')
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+app.use(cors());
 
 var port = process.env.PORT || 1337; 		// set our port
 
