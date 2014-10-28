@@ -48,7 +48,7 @@ router.route('/expenses')
 	Expense.find(function(err,expenses) { //return all expenses as the result
 		if(err) { res.send(err); }
 
-		res.json(expenses);
+		res.json({"expenses": expenses});
 
 	})
 })
@@ -67,7 +67,7 @@ router.route('/expenses')
 
 		res.json({message: 'Expense created!'});
 	});
-})
+});
 
 
 // REGISTER OUR ROUTES -------------------------------
