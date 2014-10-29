@@ -91,7 +91,8 @@ router.route('/expenses/:expense_id')
 		if(err)
 			res.send(err);
 
-		expense.name = req.body.name; //update expense name
+		if(req.body.name)
+			expense.name = req.body.name; //update expense name
 		
 		if(req.body.amount)
 			expense.amount = req.body.amount; //update amount
@@ -105,6 +106,17 @@ router.route('/expenses/:expense_id')
 		});
 	});
 })
+
+.delete(function(req,res) {
+	Expense.remote({
+		_id: req.params.bear_id
+	},function(err,Expense) {
+		if(err)
+			res.send(err);
+
+		res.json(200,{message: 'Successfully deleted'});
+	});
+});
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
