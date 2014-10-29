@@ -93,7 +93,7 @@ router.route('/expenses/:expense_id')
 
 		expense.name = req.body.name; //update expense name
 		
-		if(req.body.amount != '')
+		if(req.body.amount)
 			expense.amount = req.body.amount; //update amount
 
 		//save the item
