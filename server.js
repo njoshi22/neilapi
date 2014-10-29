@@ -69,6 +69,40 @@ router.route('/expenses')
 	});
 });
 
+// on routes that end in /expenses/:expense_id
+// ---------------------------------------------
+router.route('/expenses/:expense_id')
+
+.get(function(req,res) {
+	Expense.findById(req.params.expense_id,function(err,expense) {
+		if(err) {
+			res.send(err);
+		}
+
+		res.json({"expense": expense});
+
+	});
+})
+
+.put(function(req,res) {
+
+	//first find the item we want
+	Expense.findById(req.params.expense_id,function(err,expense) {
+		if(err)
+			res.send(err);
+
+		expense.name = req.body.name; //update expense name
+		expense.amount = req.body.amount; //update amount
+
+		//save the item
+		expense.save(function(err) {
+			if(err)
+				res.send(err);
+
+			res.json(200,{message: 'Update successful.'});
+		});
+	});
+})
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
