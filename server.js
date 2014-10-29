@@ -92,7 +92,9 @@ router.route('/expenses/:expense_id')
 			res.send(err);
 
 		expense.name = req.body.name; //update expense name
-		expense.amount = req.body.amount; //update amount
+		
+		if(req.body.amount != '')
+			expense.amount = req.body.amount; //update amount
 
 		//save the item
 		expense.save(function(err) {
