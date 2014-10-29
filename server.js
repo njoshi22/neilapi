@@ -109,7 +109,7 @@ router.route('/expenses/:expense_id')
 
 .delete(function(req,res) {
 	Expense.remove({
-		_id: req.params.bear_id
+		_id: req.params.expense_id
 	},function(err,Expense) {
 		if(err)
 			res.send(err);
