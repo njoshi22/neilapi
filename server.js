@@ -108,7 +108,7 @@ router.route('/expenses/:expense_id')
 })
 
 .delete(function(req,res) {
-	Expense.remote({
+	Expense.remove({
 		_id: req.params.bear_id
 	},function(err,Expense) {
 		if(err)
