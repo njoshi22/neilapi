@@ -55,21 +55,18 @@ router.route('/expenses')
 
 
 .post(function(req,res) {
-	// var expense = new Expense();
-	// expense.name = req.body.name;
-	// expense.amount = req.body.amount;
+	var expense = new Expense();
+	expense.name = req.body.expense.name;
+	expense.amount = req.body.expense.amount;
 
-	// //save the expense and check for errors
-	// expense.save(function(err) {
-	// 	if(err) {
-	// 		res.send(err);
-	// 	}
+	//save the expense and check for errors
+	expense.save(function(err) {
+		if(err) {
+			res.send(err);
+		}
 
-	// 	res.json(201,{message: 'Expense created!'});
-	// });
-
-	res.json(req.expense);	
-
+		res.json(201,{message: 'Expense created!'});
+	});
 });
 
 // on routes that end in /expenses/:expense_id
