@@ -65,7 +65,7 @@ router.route('/expenses')
 			res.send(err);
 		}
 
-		res.json(201,{message: 'Expense created!'});
+		res.json(201);
 	});
 });
 
