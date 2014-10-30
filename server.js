@@ -55,18 +55,21 @@ router.route('/expenses')
 
 
 .post(function(req,res) {
-	var expense = new Expense();
-	expense.name = req.body.name;
-	expense.amount = req.body.amount;
+	// var expense = new Expense();
+	// expense.name = req.body.name;
+	// expense.amount = req.body.amount;
 
-	//save the expense and check for errors
-	expense.save(function(err) {
-		if(err) {
-			res.send(err);
-		}
+	// //save the expense and check for errors
+	// expense.save(function(err) {
+	// 	if(err) {
+	// 		res.send(err);
+	// 	}
 
-		res.json({message: 'Expense created!'});
-	});
+	// 	res.json(201,{message: 'Expense created!'});
+	// });
+
+	res.json(req.expense);	
+
 });
 
 // on routes that end in /expenses/:expense_id
@@ -79,7 +82,7 @@ router.route('/expenses/:expense_id')
 			res.send(err);
 		}
 
-		res.json({"expense": expense});
+		res.json({"expenses": expense});
 
 	});
 })
@@ -114,7 +117,7 @@ router.route('/expenses/:expense_id')
 		if(err)
 			res.send(err);
 
-		res.json(200,{message: 'Successfully deleted'});
+		res.json(204,{message: 'Successfully deleted'});
 	});
 });
 
