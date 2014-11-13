@@ -48,7 +48,7 @@ router.route('/expenses')
 	Expense.find(function(err,expenses) { //return all expenses as the result
 		if(err) { res.send(err); }
 
-		res.json({"expenses": expenses});
+		res.json(200,{"expenses": expenses});
 
 	})
 })
@@ -65,7 +65,7 @@ router.route('/expenses')
 			res.send(err);
 		}
 
-		res.json(201);
+		res.json(201,{"expense": expense});
 	});
 });
 
@@ -79,7 +79,7 @@ router.route('/expenses/:expense_id')
 			res.send(err);
 		}
 
-		res.json({"expenses": expense});
+		res.json(200,{"expense": expense});
 
 	});
 })
@@ -102,7 +102,7 @@ router.route('/expenses/:expense_id')
 			if(err)
 				res.send(err);
 
-			res.json(200,{message: 'Update successful.'});
+			res.json(200,{"expense": expense});
 		});
 	});
 })
@@ -114,7 +114,7 @@ router.route('/expenses/:expense_id')
 		if(err)
 			res.send(err);
 
-		res.json(204,{message: 'Successfully deleted'});
+		res.json(200);
 	});
 });
 
